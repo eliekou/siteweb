@@ -9,7 +9,7 @@ class MovieController extends Controller
 {
     public function index()
     {
-        $movies = getContent('/database/save');
+        $movies = Http::get('https://api.themoviedb.org/3/trending/all/day?api_key=12f3ecaddec2acc46c4f8d540b4c9053');
         return view('movies.choice')->with('movies',$movies);
     }
 }
