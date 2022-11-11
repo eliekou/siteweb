@@ -16,6 +16,21 @@
     <style class="u-style">.u-section-2 {
   min-height: 806px;
 }
+.user_1{
+  color:red;
+
+
+}
+h2{
+  color:yellow;
+}
+a{
+  color:yellow;
+  font-size:2rem;
+}
+.u-body{
+  background-color:black;
+}
 .u-section-2 .u-shape-1 {
   height: 403px;
   margin-top: 0;
@@ -716,7 +731,7 @@
 		"@type": "Organization",
 		"name": "",
 		"url": "https://website255453.nicepage.io/Page-1.html",
-		"logo": "//images03.nicepage.com/c461c07a441a5d220e8feb1a/a3e31381c306570fbc13a407/Untitled-2.png"
+		"logo": "wallpaper-site.jpg"
 }</script>
     <meta property="og:title" content="Page 1">
     <meta property="og:type" content="website">
@@ -728,7 +743,7 @@
   <body class="u-body">
 <header class="u-clearfix u-header u-palette-1-base u-header" id="sec-ab9d"><div class="u-clearfix u-sheet u-sheet-1">
         <a href="https://nicepage.com" class="u-image u-logo u-image-1">
-          <img src="https://images03.nicepage.com/c461c07a441a5d220e8feb1a/a3e31381c306570fbc13a407/Untitled-2.png" class="u-logo-image u-logo-image-1" data-image-width="64">
+          <img src="wallpaper-site.jpg" class="u-logo-image u-logo-image-1" data-image-width="64">
         </a>
         <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1" data-responsive-from="XL">
           <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px; font-weight: 500;">
@@ -740,14 +755,14 @@
             </a>
           </div>
           <div class="u-custom-menu u-nav-container">
-            <ul class="u-nav u-spacing-2 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-active-grey-5 u-border-active-palette-1-base u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-text-active-palette-3-base u-text-hover-palette-3-base u-text-palette-3-base" href="/home-page.html" data-page-id="261875" style="padding: 10px 20px;">home page</a>
+            <ul class="u-nav u-spacing-2 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-active-grey-5 u-border-active-palette-1-base u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-text-active-palette-3-base u-text-hover-palette-3-base u-text-palette-3-base" href="/" data-page-id="261875" style="padding: 10px 20px;">home page</a>
 </li></ul>
           </div>
           <div class="u-custom-menu u-nav-container-collapse">
             <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
               <div class="u-sidenav-overflow">
                 <div class="u-menu-close"></div>
-                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="/home-page.html" data-page-id="261875" style="padding: 10px 20px;">home page</a>
+                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="/" data-page-id="261875" style="padding: 10px 20px;">home page</a>
 </li></ul>
               </div>
             </div>
@@ -756,18 +771,20 @@
         </nav>
       </div></header>
     
-    <section class="u-align-center u-clearfix u-section-2" id="carousel_a717">
-      <div class="u-expanded-width u-grey-5 u-shape u-shape-rectangle u-shape-1"></div>
-      <div alt="" class="u-border-8 u-border-white u-image u-image-circle u-image-1"></div>
+    <section class="u-align-center u-clearfix u-section-2" id="carousel_a717" color="dark">
+      <div class="u-expanded-width  u-shape u-shape-rectangle u-shape-1">
+      
+        <img src="wallpaper-site.jpg" width ="200" height="200" alt="Logo Internet Explorer" />
+        </div>
       @auth
       <h2 class="u-text u-text-1"><li>{{Auth::user()->name}}
         {{Auth::user()->email}}</li>
       @endauth
       </h2>
-      <p class="u-text u-text-2">This is your user page</p>
-       <a href="/movies" class="u-active-none u-border-2 u-border-black u-btn u-btn-rectangle u-button-style u-hover-none u-none u-btn-2"target="_blank">Rank movies now</a>
+      <p class="user_1">This is your user page</p>
+       <a href="/movies" position="center"target="_blank">Rank movies now / </a>
       
-      <a href="/dashboard" class="u-active-none u-border-2 u-border-black u-btn u-btn-rectangle u-button-style u-hover-none u-none u-btn-2">Go to Dashboard</a>
+      <a href="/dashboard" position="center" >Go to Dashboard</a>
     </section>
     <section class="u-clearfix u-grey-10 u-valign-top-lg u-valign-top-xl u-section-3" id="sec-7c5b">
       <div class="u-expanded-width u-shape u-shape-rectangle u-white u-shape-1"></div>
@@ -776,8 +793,14 @@
           <div class="u-layout-row">
             <div class="u-container-style u-layout-cell u-left-cell u-size-30 u-layout-cell-1">
               <div class="u-container-layout u-valign-top u-container-layout-1">
-                <h2 class="u-align-left u-text u-text-1">Tier <span style="font-weight: 700;">List</span>
+                <h2 class="u-align-left u-text u-text-1">Renkings <span style="font-weight: 700;">Given</span>
                 </h2>
+                @forelse(Auth::user()->reviews as $reviews)
+                <li>You gave {{$reviews->movie_name}} a score of {{$reviews->score}}/10</li>
+               
+                @empty
+                No movies ranked for now!
+                @endforelse
                 <img src="https://images03.nicepage.com/c461c07a441a5d220e8feb1a/04175ff1b3bf5f11a20c0152/a9dcc2d3-077b-4cbf-35f1-05a7ca2b6438.jpg?version=" alt="" class="u-expanded-width u-image u-image-default u-image-1" data-image-width="1000" data-image-height="919">
               </div>
             </div>
@@ -786,7 +809,7 @@
                 <img class="u-expanded-width u-image u-image-2" src="https://images03.nicepage.com/c461c07a441a5d220e8feb1a/75f097b361975b92a095e949/ret-min.jpg">
                 <p class="u-align-left u-text u-text-2">Images from <a href="https://www.freepik.com/psd/logo" class="u-border-1 u-border-black u-btn u-button-link u-button-style u-none u-text-body-color u-btn-1" target="_blank">Freepik</a>
                 </p>
-                <a href="https://nicepage.com/website-builder" class="u-border-2 u-border-grey-dark-1 u-btn u-button-style u-none u-btn-2">read more</a>
+                <a href="/" class="u-border-2 u-border-grey-dark-1 u-btn u-button-style u-none u-btn-2">read more</a>
               </div>
             </div>
           </div>

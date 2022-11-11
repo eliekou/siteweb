@@ -1,15 +1,55 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Movies;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
+
+
 
 class MovieController extends Controller
 {
-    public function index()
+    public function show()
     {
-        $movies = Http::get('https://api.themoviedb.org/3/trending/all/day?api_key=12f3ecaddec2acc46c4f8d540b4c9053');
-        return view('movies.choice')->with('movies',$movies);
+        //$movies = DB::all();
+        //$movies = DB::select('select name from mytable');;
+        $data = [];
+        $movies = Movies::all();
+        //$data["title"] = $movie['id'];
+        //$data["id"] = $movie ->getId();
+        $data["movies"] = Movies::all();
+
+
+
+        //$data = $movies["results_id"];
+        return view('co.choice')->with("movies",$movies);
     }
+
+    public function search(){
+        $q = request()->input('q');
+
+        
+        
+        $movie = Movies::where('name','like',"%$q%")//pas forcément le q
+
+                ->orWhere('overview','like',"%$q%")
+                ->orWhere('title','like',"%$q%")
+                ->paginate(6);
+                
+        return view('movies.movie1')->with("movie",$movie);        
+    }
+
+    public function test(){
+
+        return view('partials.search');
+    }
+    public function show_reviews($id){
+
+
+        $movie = Movies::where('id','like',"%$id")->get();
+        return view('movies.movie1review')->with("movie",$movie);
+    }
+
+
+
+
 }
