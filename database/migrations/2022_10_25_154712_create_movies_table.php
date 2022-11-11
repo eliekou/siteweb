@@ -13,9 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('movies', function (Blueprint $table) {
+        Schema::table('mytable', function ( $table) {
             $table->id();
             $table->timestamps();
+
+            
+
         });
     }
 

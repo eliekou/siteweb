@@ -49,6 +49,11 @@ class MovieController extends Controller
         return view('movies.movie1review')->with("movie",$movie);
     }
 
+    public function show_comments($id){
+        $movie = Movies::where('id','like',"%$id")->get();
+        return view('movies.movie1comments')->with("movie",$movie);
+    }
+
 
 
 

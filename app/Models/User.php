@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Review;
+use App\Models\Comments;
+
 
 class User extends Authenticatable
 {
@@ -46,5 +48,9 @@ class User extends Authenticatable
     public function Reviews(){
 
         return $this->hasMany(Review::Class);
+    }
+    
+    public function Comments(){
+        return $this->hasMany(Comment::Class);
     }
 }

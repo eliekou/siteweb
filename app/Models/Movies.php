@@ -2,7 +2,8 @@
 
 namespace App\Models;
 
-use App\Model\Reviews;
+use App\Models\Reviews;
+use App\Models\Comment;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -55,5 +56,9 @@ class Movies extends Model
     }
     public function first_trend(){
 
+    }
+
+    public function comments(){
+        return $this->hasMany(Comment::class);
     }
 }

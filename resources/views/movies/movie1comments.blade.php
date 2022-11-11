@@ -16,25 +16,25 @@
 
     <!-- Custom styles for this template -->
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
-    <link href="movie1.css" rel="stylesheet">
+    <link href="movie1comment.css" rel="stylesheet">
   </head>
 
   <body>
 
-    <div class="container">
+    <div class="container" background-color="yellow">
       <header class="blog-header py-3">
         <div class="row flex-nowrap justify-content-between align-items-center">
           <div class="col-4 pt-1">
-            <a class="text-muted" href="/movies">Back to movie search</a>
+            <a class="text-muted" href="#">Subscribe</a>
           </div>
           <div class="col-4 text-center">
-            <a class="blog-header-logo text-dark" href="#">TierMovie</a>
+            <a class="blog-header-logo text-dark" href="/movies">Back to Movie search</a>
           </div>
           <div class="col-4 d-flex justify-content-end align-items-center">
             <a class="text-muted" href="#">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-3"><circle cx="10.5" cy="10.5" r="7.5"></circle><line x1="21" y1="21" x2="15.8" y2="15.8"></line></svg>
             </a>
-            <a class="btn btn-sm btn-outline-secondary" href="/co.user">Userpage</a>
+            <a class="btn btn-sm btn-outline-secondary" href="#">Sign up</a>
           </div>
         </div>
       </header>
@@ -46,84 +46,48 @@
           <a class="p-2 text-muted" href="#">Technology</a>
           <a class="p-2 text-muted" href="#">Design</a>
           <a class="p-2 text-muted" href="#">Culture</a>
-          <a class="p-2 text-muted" href="/co.user">Back to your page</a>
+          <a class="p-2 text-muted" href="#">Business</a>
           <a class="p-2 text-muted" href="#">Politics</a>
           <a class="p-2 text-muted" href="#">Opinion</a>
           <a class="p-2 text-muted" href="#">Science</a>
           <a class="p-2 text-muted" href="#">Health</a>
           <a class="p-2 text-muted" href="#">Style</a>
-          <a class="p-2 text-muted" href="#"></a>
+          <a class="p-2 text-muted" href="#">Travel</a>
         </nav>
       </div>
-      <div class= "Rankings">Movie score</div>
+
       <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark">
-      
-        <div class="col-xl-6 px-0">
-          <h1 class="col-6 display-4 font-italic ml-10  "> @foreach($movie as $movie)
+        <div class="col-md-6 px-0">
+          <h1 class="display-4 font-italic">@foreach($movie as $movie)
             {{$movie->getName()}}
-            @endforeach
-            </h1>
-          <h7> {{$movie['overview']}}</h7>
-          <div class ="container">
-            <div class = "row ">
-                <div class="col">
-                    <div class ="ranking">
-
-            Movie score
-
-                    </div>
-                    @if($movie->reviews->isNotEmpty())
-                        <div class="score">{{$movie->avg_score()}}/10</div>
-
-                        <a class="text-muted" href="/showRev/{{$movie->getId()}}">Go see scores!</a>
-                    @else
-                       <div class ="ranking">
-                        No scores until now! Leave one!
-                       </div>
-                    @endif
-
-                    @if($movie->comments->isNotEmpty())
-                        
-
-                        <a class="text-muted" href="/showCom/{{$movie->getId()}}">Go see reviews!</a>
-                    @else
-                       <div class ="ranking">
-                        No reviews until now! Leave one!
-                       </div>
-                    @endif
-                </div>
-
-                <div class="col">
-            @include('partials.form')
-                </div>
-
-                <div class="col">
-              @include('partials.comment_form')
-
-                </div>
-
-            </div>
-              
-
-                
-                
-                    
-
-                
-            
-        </div>  
-          <p class="lead mb-0"><a href="#" class="text-white font-weight-bold">Movie from {{$movie['origin_country0']}}</a></p>
-          
+            @endforeach</h1>
+          <p class="lead my-3">{{$movie['overview']}}</p>
+          <p class="lead mb-0"><a href="/search?q={{$movie->name}}">Go back to the movie page</a></p>
         </div>
+      </div>
+
+      <div class="row mb-2">
+        @foreach($movie->comments as $comment)
+        <div class="col-md-6">
+          <div class="card flex-md-row mb-4 box-shadow h-md-250">
+            <div class="card-body d-flex flex-column align-items-start">
+              <strong class="d-inline-block mb-2 text-primary">Ecrit par {{$comment->user->name}}</strong>
+              <h3 class="mb-0">
+                <a class="text-dark" href="#">Movie Comment</a>
+              </h3>
+              <div class="mb-1 text-muted">{{$comment['created_at']}}</div>
+              <p class="card-text mb-auto">{{$comment['content']}}</p>
+              
+            </div>
+            
+          </div>
+        </div>
+        @endforeach
         
-        <img src="{{($movie['poster_path'])}}" width ="400" height="500" alt="Logo Internet Explorer" />
       </div>
-      </div>
-  
     </div>
 
-
-
+    
     <footer class="blog-footer">
       <p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
       <p>
