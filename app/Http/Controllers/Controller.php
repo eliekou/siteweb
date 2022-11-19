@@ -15,8 +15,8 @@ class Controller extends BaseController
 
     public function start(){
 
-        $movies = Movies::all();
-        
+        $movies = Movies::orderBy('vote_average', 'desc')->first();
+        //dd($movies);
         return view("HomePage")->with("movies",$movies);
     }
 }

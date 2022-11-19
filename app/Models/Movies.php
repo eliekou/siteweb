@@ -37,7 +37,12 @@ class Movies extends Model
     }
 
     public function getName(){
-        return $this->attributes['name'];
+        if ($this->attributes['name']!=NULL){
+            
+            return $this->attributes['name'];}
+        else{
+            return $this->attributes['original_title']; 
+        }
     }
 
     public function getReview(){
