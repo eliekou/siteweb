@@ -21,6 +21,7 @@ class MovieController extends Controller
 
 
         //$data = $movies["results_id"];
+        
         return view('co.choice')->with("movies",$movies);
     }
 

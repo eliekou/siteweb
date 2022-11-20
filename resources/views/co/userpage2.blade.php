@@ -9,10 +9,10 @@
 
     <title>Product example for Bootstrap</title>
 
-    
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/product/">
 
     <!-- Bootstrap core CSS -->
-    <link href="bootstrap_min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="HomePage.css" rel="stylesheet">
@@ -35,21 +35,21 @@
       </div>
     </nav>
 
-    <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center yellow bg-image">
+    <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center yellow">
       <div class="col-md-5 p-lg-5 mx-auto my-5">
         <h1 class="display-4 font-weight-normal">TierMovie</h1>
-        <p class="lead font-weight-normal">Rank and Tierlist of movies</p>
-        <p class="lead font-weight-normal">HomePage</p>
-        <a class="btn btn-outline-secondary" href="{{route('dashboard')}}">Go to dash board and log out</a>
-
+        <p class="lead font-weight-normal">Welcome to your userpage</p>
+        <a class="btn btn-outline-secondary" href="{{route('MOVIES')}}">GO RANK MOVIES NOW</a>
+        <a class="btn btn-outline-secondary" href="{{route('HOME')}}">BACK TO HOME</a>
+        
         @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
-                        <a class="btn btn-outline-secondary" href="{{route('co.user')}}">Go to your userpage, {{Auth::user()->name}}!!</a>
+                        <a class="btn btn-outline-secondary" href="{{route('co.user')}}">Welcome to your userpage {{Auth::user()->name}}!!</a>
 
                         
                     @else
-                        <a class="btn btn-outline-secondary" href="{{route('login')}}">Connect to your userpage!!</a>
+                        <a class="btn btn-outline-secondary" href="{{route('login')}}">Go to dashboard and log out!</a>
 
                         @if (Route::has('register'))
                             
@@ -64,30 +64,57 @@
 
 
       </div>
-  
-     
+      
     </div>
-  <h2 class = "display-20 text-center color-red"> GENERAL STANDINGS</div>
+   
   <div class=container>
-       
-    @foreach($movies as $movie) 
+  <h2 class="display-5 position-relative text-center">
+            
+            
+            
+            Movies you rated/commented:
+            
+          </h2>     
+  @forelse(Auth::user()->reviews as $reviews)
     <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
       
       <div class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
 
         <div class="my-3 py-3">
         
-          <h2 class="display-5">
-            
-            
-            
-            Trending now:
-            
-          </h2>
+          
           <p class="lead">
-          {{$movie["name"]}}  </p>
-          <h2 class="display-5">SCORE {{$movie['vote_average']}}</h2>
-             <img src="{{$movie['poster_path']}}" width ="400" height="500" alt="Logo Internet Explorer" />
+          {{$reviews->movie_name}}  </p>
+          <p class="lead">
+          You rated on {{$reviews->created_at}} </p>
+          <h2 class="display-5">Your score: {{$reviews->score}}</h2>
+          
+          <img src="{{$reviews->movie['poster_path']}}" width ="400" height="500" alt="Logo Internet Explorer" />
+        </div>
+        
+      </div>
+      
+      
+    </div>
+    @endforeach
+
+
+    @forelse(Auth::user()->comments as $comments)
+    <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
+      
+      <div class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
+         
+        <div class="my-3 py-3">
+        
+          
+          <p class="lead">
+          {{$comments->movie_name}}  </p>
+          <p class="lead">
+          You commented on {{$comments->created_at}} </p>
+          <h2 class="display-5"> {{$comments->content}}</h2>
+          <img src="{{$comments->movie['poster_path']}}" width ="200" height="300" alt="Logo Internet Explorer" />
+          
+          
         </div>
         
       </div>
@@ -96,9 +123,7 @@
     </div>
     @endforeach
     
-    
 
-   
 
     <footer class="container py-5">
       <div class="row">

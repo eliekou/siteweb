@@ -11,7 +11,7 @@ class Review extends Model
     use HasFactory;
     public function Movie(){
 
-        return $this->belongsTo(Movies::Class); 
+        return $this->belongsTo(Movies::Class,'movies_id'); 
     }
     public function user(){
         return $this->belongsTo(User::Class);

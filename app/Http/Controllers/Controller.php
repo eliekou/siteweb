@@ -15,10 +15,12 @@ class Controller extends BaseController
 
     public function start(){
 
-        $movies = Movies::orderBy('vote_average', 'desc')->first();
+        $movies = Movies::all()->whereNotNull('vote_average')->sortByDesc('vote_average')->take(10);
         //dd($movies);
         return view("HomePage")->with("movies",$movies);
     }
+
+
 }
 
 

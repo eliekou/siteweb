@@ -13,16 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', '\App\Http\Controllers\Controller@start');
-Route::get('/foo','\App\Http\Controllers\TestController@foo');
-Route::get('/bar','\App\Http\Controllers\TestController@bar');
+Route::get('/', '\App\Http\Controllers\Controller@start')->name('HOME');
+//Route::get('/foo','\App\Http\Controllers\TestController@foo');
+//Route::get('/bar','\App\Http\Controllers\TestController@bar');
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 require __DIR__.'/auth.php';
 Route::get('/co.user','\App\Http\Controllers\Usercontroller@show')->middleware(['auth', 'verified'])->name('co.user');
-Route::get('/movies','\App\Http\Controllers\MovieController@show');
+Route::get('/movies','\App\Http\Controllers\MovieController@show')->name('MOVIES');
 
 
 Route::get('/test','\App\Http\Controllers\MovieController@test');

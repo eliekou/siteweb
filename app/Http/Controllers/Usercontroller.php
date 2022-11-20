@@ -12,7 +12,7 @@ class Usercontroller extends Controller
     }
     public function show()
     {
-        return view('co.userpage');
+        return view('co.userpage2');
     }
     public function bar()
     {

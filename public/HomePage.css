@@ -1,5 +1,13 @@
+
+
+.bg-image{
+  background-image: "wallpaper-site.jpg";
+  height:100vh;
+}
+
 .container {
     max-width: 960px;
+    background-image: "wallpaper-site.jpg";
   }
   
   /*
