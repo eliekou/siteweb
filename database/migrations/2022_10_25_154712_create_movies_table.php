@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::table('mytable', function ( $table) {
-            $table->id();
-            $table->timestamps();
+            //$table->id();
+            //$table->timestamps();
 
             
 

@@ -42,4 +42,12 @@ class CommentController extends Controller
        
 
     }
+
+    public function destroy($id){
+        $comment = Comment::where('id','like',"%$id")->first();
+        $comment->delete();
+
+        return('Comment deleted');
+        
+    }
 }
