@@ -77,6 +77,7 @@
               </h3>
 
               <div class="mb-1 text-muted">{{$review['created_at']}}</div>
+              <a class="text-dark" href="/review/delete/{{$review->getId()}}">DELETE REVIEW</a>
             </div>
             
           </div>

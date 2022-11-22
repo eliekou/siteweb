@@ -84,11 +84,11 @@
 
                     @if($movie->comments->isNotEmpty())
                         
-
-                        <a class="text-muted" href="/showCom/{{$movie->getId()}}">Go see reviews!</a>
+                        
+                        <a class="text-muted" href="/showCom/{{$movie->getId()}}">Go see comments!</a>
                     @else
                        <div class ="ranking">
-                        No reviews until now! Leave one!
+                        No comments until now! Leave one!
                        </div>
                     @endif
                 </div>

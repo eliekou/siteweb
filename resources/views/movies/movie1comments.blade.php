@@ -74,8 +74,9 @@
               <strong class="d-inline-block mb-2 text-primary">Ecrit par {{$comment->user->name}}</strong>
               <h3 class="mb-0">
                 <a class="text-dark" href="#">Movie Comment</a>
-                <a class="text-dark" href="/comment/delete/{{$comment->getId()}}">DELETE COMMENT</a>
+                
               </h3>
+              <a href="/comment/delete/{{$comment->getId()}}">DELETE COMMENT</a>
               <div class="mb-1 text-muted">{{$comment['created_at']}}</div>
               <p class="card-text mb-auto">{{$comment['content']}}</p>
               

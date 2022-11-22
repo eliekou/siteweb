@@ -22,7 +22,7 @@ class CommentController extends Controller
         $comment->movie_id = $movie->id;
         $movie->comments()->save($comment);
 
-
+        return('You have left a comment!!');
 
 
     }
@@ -38,6 +38,8 @@ class CommentController extends Controller
        $comment->movie_id = $movie->id;
        $comment->user_id = auth()->user()->id;
        $comment->save();
+
+       return('You have left a comment!!');
 
        
 

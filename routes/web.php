@@ -51,4 +51,5 @@ Route::middleware(['admin',])->group(function (){
     
     Route::get('/bartt','\App\Http\Controllers\TestController@bar1',);//Cette route doit respecter la logique de la fonction handle
     Route::get('/comment/delete/{id}','\App\Http\Controllers\CommentController@destroy');
+    Route::get('/review/delete/{id}','\App\Http\Controllers\ReviewController@destroy');
 });

@@ -30,6 +30,7 @@ class ReviewController extends Controller
         $review->movies_id = $movie->id;
         $movie->reviews()->save($review);
 
+        return('You have left a review!!');
 
 
 
@@ -47,7 +48,17 @@ class ReviewController extends Controller
        $review->user_id = auth()->user()->id;
        $review->save();
 
+       return('You have left a review!!');
+
        
 
+    }
+
+    public function destroy($id){
+        $review = Review::where('id','like',"%$id")->first();
+        $review->delete();
+
+        return('Review deleted');
+        
     }
 }

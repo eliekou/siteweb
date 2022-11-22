@@ -29,7 +29,7 @@ class MovieController extends Controller
         $q = request()->input('q');
 
         
-        
+        //Système de moteur de recherche
         $movie = Movies::where('name','like',"%$q%")//pas forcément le q
 
                 ->orWhere('overview','like',"%$q%")
