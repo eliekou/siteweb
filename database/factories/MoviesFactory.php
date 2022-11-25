@@ -22,7 +22,7 @@ class MoviesFactory extends Factory
             'name'=>fake()->name(),
             'overview'=>fake()->paragraph(),
             'poster_path'=> Str::random(10),
-            'id'=>rand(1,20000),
+            'id'=>rand(1,1000000),
         ];
     }
 }

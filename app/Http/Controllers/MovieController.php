@@ -33,7 +33,7 @@ class MovieController extends Controller
         $movie = Movies::where('name','like',"%$q%")//pas forcément le q
 
                 ->orWhere('overview','like',"%$q%")
-                ->orWhere('title','like',"%$q%")
+                ->orWhere('title','like',"%$q%")->with('reviews','comments')
                 ->paginate(6);
                 
         return view('movies.movie1')->with("movie",$movie);        
@@ -45,13 +45,14 @@ class MovieController extends Controller
     }
     public function show_reviews($id){
 
-
-        $movie = Movies::where('id','like',"%$id")->get();
+        //Fonction qui vise à montrer les différentes reviews
+        //On essaye d'utiliser du eager loading
+        $movie = Movies::where('id','like',"%$id")->with('reviews')->get();
         return view('movies.movie1review')->with("movie",$movie);
     }
 
     public function show_comments($id){
-        $movie = Movies::where('id','like',"%$id")->get();
+        $movie = Movies::where('id','like',"%$id")->with('comments')->get();
         return view('movies.movie1comments')->with("movie",$movie);
     }
 

@@ -23,7 +23,7 @@ return new class extends Migration
 
 
             #Convention des clés étrangères
-            $table->integer('movies_id');
+            $table->unsignedBigInteger('movies_id');
             $table->foreign('movies_id')->references('id')->on('mytable');
 
             $table->unsignedBigInteger('user_id');

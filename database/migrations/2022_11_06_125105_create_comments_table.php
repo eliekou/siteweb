@@ -20,7 +20,7 @@ return new class extends Migration
             $table->timestamps();
 
             #1er clé étrangère
-            $table->integer('movie_id');
+            $table->unsignedBiginteger('movie_id');
             $table->foreign('movie_id')->references('id')->on('mytable');
             $table->integer('movies_id');
             #2ème clé étrangère
